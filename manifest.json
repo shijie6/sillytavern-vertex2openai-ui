@@ -1,0 +1,12 @@
+{
+    "display_name": "Vertex2OpenAI 控制台",
+    "loading_order": 100,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "shijie6",
+    "version": "1.0.0",
+    "homePage": "https://github.com/shijie6/sillytavern-vertex2openai-ui",
+    "description": "Vertex2OpenAI 服务端插件的配套面板：在酒馆里直接配置 Key/Cookie、自检、探测可用模型。"
+}

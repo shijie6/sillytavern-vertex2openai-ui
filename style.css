@@ -1,0 +1,110 @@
+/* Vertex2OpenAI 控制台 —— 尽量复用酒馆主题变量，避免和深色/浅色主题打架 */
+
+#v2o_panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 6px 0 12px;
+}
+
+#v2o_panel .v2o-err {
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--ErrorToastBG, #5a1f1f);
+    color: var(--ErrorToastText, #fff);
+    line-height: 1.6;
+}
+
+#v2o_panel .v2o-status {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--black30a, rgba(0, 0, 0, 0.3));
+    font-size: 0.9em;
+}
+
+#v2o_panel .v2o-srow {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+#v2o_panel .v2o-srow > span:first-child {
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+#v2o_panel .v2o-on { color: #4ec97b; font-weight: bold; }
+#v2o_panel .v2o-off { color: #e06c6c; font-weight: bold; }
+
+#v2o_panel .v2o-actions,
+#v2o_panel .v2o-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+#v2o_panel .v2o-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#v2o_panel .v2o-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1 1 100%;
+    min-width: 0;
+}
+
+#v2o_panel .v2o-half {
+    flex: 1 1 calc(50% - 10px);
+}
+
+#v2o_panel .v2o-sep {
+    flex: 1 1 100%;
+    margin-top: 6px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--grey30, #444);
+    opacity: 0.75;
+    font-weight: bold;
+}
+
+#v2o_panel label {
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
+#v2o_panel .v2o-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 16px;
+}
+
+#v2o_panel textarea {
+    resize: vertical;
+    min-height: 3em;
+    font-family: monospace;
+    font-size: 0.85em;
+}
+
+#v2o_panel .v2o-hint {
+    font-size: 0.8em;
+    opacity: 0.65;
+}
+
+#v2o_panel .v2o-msg.ok { color: #4ec97b; }
+#v2o_panel .v2o-msg.err { color: #e06c6c; }
+
+#v2o_panel .v2o-scanout {
+    max-height: 240px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-size: 0.8em;
+}
