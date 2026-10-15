@@ -93,7 +93,11 @@
     font-size: 0.85em;
 }
 
-#v2o_panel .v2o-btn { margin: 0; }
+#v2o_panel .v2o-btn {
+    margin: 0;
+    width: auto;          /* 抵消 .menu_button 的 width:min-content —— 它对中文没有空格可断，会缩成一个字宽导致文字竖排 */
+    white-space: nowrap;  /* 双保险：按钮文字不许折行 */
+}
 
 #v2o_panel .v2o-hint {
     font-size: 0.8em;
