@@ -93,6 +93,8 @@
     font-size: 0.85em;
 }
 
+#v2o_panel .v2o-btn { margin: 0; }
+
 #v2o_panel .v2o-hint {
     font-size: 0.8em;
     opacity: 0.65;

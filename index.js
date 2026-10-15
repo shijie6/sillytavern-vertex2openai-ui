@@ -272,10 +272,10 @@ function buildPanel() {
         <div class="v2o-status"></div>
 
         <div class="v2o-actions">
-            <button class="v2o-btn" data-act="refresh">刷新状态</button>
-            <button class="v2o-btn" data-act="save">保存</button>
-            <button class="v2o-btn" data-act="saveRestart">保存并重启服务</button>
-            <button class="v2o-btn" data-act="copy">复制端点地址</button>
+            <button class="v2o-btn menu_button" data-act="refresh">刷新状态</button>
+            <button class="v2o-btn menu_button" data-act="save">保存</button>
+            <button class="v2o-btn menu_button" data-act="saveRestart">保存并重启服务</button>
+            <button class="v2o-btn menu_button" data-act="copy">复制端点地址</button>
             <span class="v2o-msg"></span>
         </div>
 
@@ -386,7 +386,7 @@ function buildPanel() {
                 <option value="express">强制 Express</option>
                 <option value="cookie">强制 Cookie</option>
             </select>
-            <button class="v2o-btn" data-act="selftest">自检</button>
+            <button class="v2o-btn menu_button" data-act="selftest">自检</button>
         </div>
 
         <div class="v2o-row">
@@ -396,7 +396,7 @@ function buildPanel() {
                 <option value="express">强制 Express</option>
                 <option value="cookie">强制 Cookie</option>
             </select>
-            <button class="v2o-btn" data-act="scan">探测</button>
+            <button class="v2o-btn menu_button" data-act="scan">探测</button>
             <span class="v2o-hint">会真实发 N 条请求（N=模型数），配额紧张时慎用</span>
         </div>
         <pre class="v2o-scanout" style="display:none"></pre>
