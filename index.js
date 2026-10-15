@@ -10,7 +10,36 @@
  * 无论从哪里打开都能用。代价是 POST 要过 CSRF 校验，所以必须用 getRequestHeaders() 带上令牌。
  */
 
-import { getRequestHeaders } from '../../../script.js';
+/**
+ * 拿酒馆 script.js 里的 getRequestHeaders（POST 要靠它带 CSRF 令牌）。
+ *
+ * 为什么不能用静态 import：扩展从 GitHub 安装时落在
+ * /scripts/extensions/third-party/<name>/，手动拷进去的可能在 /scripts/extensions/<name>/，
+ * 两个位置层数差一级。写死 '../../../script.js' 在 third-party 下会解析成
+ * /scripts/script.js —— 不存在，整个模块直接 404，酒馆只会报一句「加载失败：[object Event]」，
+ * 看不出是路径问题。这里从模块自身 URL 逐级往上找，任何深度都能命中。
+ */
+async function loadTavernScript() {
+    let dir = new URL('.', import.meta.url);
+    const tried = [];
+    for (let i = 0; i < 6; i += 1) {
+        dir = new URL('..', dir);
+        const url = new URL('script.js', dir).href;
+        tried.push(url);
+        try {
+            return await import(url);
+        } catch {
+            // 上一层再试
+        }
+    }
+    console.warn('[vertex2openai] 没找到酒馆的 script.js，CSRF 令牌会缺失，保存类请求可能被 403。试过：', tried);
+    return null;
+}
+
+const tavern = await loadTavernScript();
+const requestHeaders = () => (tavern && typeof tavern.getRequestHeaders === 'function'
+    ? tavern.getRequestHeaders()
+    : {});
 
 const PLUGIN_ID = 'vertex2openai';
 const BASE = `/api/plugins/${PLUGIN_ID}`;
@@ -37,7 +66,7 @@ const joinBlocks = (arr) => (Array.isArray(arr) ? arr : []).join('\n\n');
 async function api(path, options = {}) {
     const res = await fetch(`${BASE}${path}`, {
         method: options.method || 'GET',
-        headers: getRequestHeaders(),
+        headers: requestHeaders(),
         ...(options.body ? { body: JSON.stringify(options.body) } : {}),
     });
     if (!res.ok) {
