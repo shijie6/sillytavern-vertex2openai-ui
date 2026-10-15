@@ -412,10 +412,11 @@ function buildPanel() {
     <div class="inline-drawer-content">${html}</div>
 </div>`);
     $('#extensions_settings').append(drawer);
-    drawer.find('.inline-drawer-toggle').on('click', function () {
-        $(this).next('.inline-drawer-content').slideToggle(150);
-        $(this).find('.inline-drawer-icon').toggleClass('up down');
-    });
+    // 千万不要自己再绑一次 .inline-drawer-toggle 的 click：
+    // 酒馆已经在 document 上做了事件委托（public/script.js 里的
+    // $(document).on('click', '.inline-drawer-toggle', ...)），它会 slideToggle 一次；
+    // 我们再绑一个就变成切两次，展开立刻又被收起 —— 表现就是「点了完全没反应」。
+    // 这里只要求结构上 .inline-drawer-content 是 .inline-drawer 的直接子元素即可，委托自然生效。
 
     const acts = { refresh: () => refresh(true), save: () => save(false), saveRestart: () => save(true), copy: copyEndpoint, selftest, scan };
     drawer.on('click', '[data-act]', function () {
